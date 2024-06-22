@@ -1,6 +1,8 @@
 # Thapathali Report LaTeX Template
 This LaTeX template is crafted to assist students of Thapathali Campus, Institute of Engineering, Tribhuvan University (IOE TU) in preparing their project reports. It adheres as closely as possible to the institution's formatting and style guidelines, ensuring a professional and consistent presentation.
 
+**To download the template, go to the [releases section](https://github.com/AC17dollars/thapathali-report-latex-template/releases) and download the source code in zip.**
+
 ## Features
   - Standardized title page
   - Sections for abstract, introduction, literature review, methodology, results, discussion, conclusion, references, and appendices
