@@ -12,7 +12,7 @@ This LaTeX template is crafted to assist students of Thapathali Campus, Institut
 ## Preview
 A preview of the generated **pdf** is available [here](main.pdf).
 
-*Note: The generated pdf contains outlined hyperrefs, this won't affect when printing the document so you can leave it as is. If this bothers you you can add `\hypersetup{hidelinks}` in main.tex*
+*Note: The generated pdf contains outlined hyperrefs, this won't affect when printing the document so you can leave it as is. If this bothers you, you can add `\hypersetup{hidelinks}` in main.tex*
 
 ![image showing outlined hyperref](https://i.imgur.com/e7o5lP9.png)
 
