@@ -4,19 +4,20 @@
 \ProvidesClass{ioereport}[Project Report Template]
 \LoadClass[a4paper, 12pt]{article}
 \RequirePackage[margin=1in, left=1.5in, bottom=1.15in]{geometry}
-\RequirePackage{mathptmx} 
-\RequirePackage{setspace}
-\RequirePackage{tocloft}
-\RequirePackage{parskip}
+\RequirePackage{mathptmx} % times font
+\RequirePackage{setspace} % for one half spacing
+\RequirePackage{tocloft} % table of contents
+\RequirePackage{parskip} % paragraph skip set below
 \setlength{\parskip}{1.15em}
 \RequirePackage{graphicx}
 \RequirePackage{glossaries} % for abbreviations 
 \RequirePackage{float} % for floating figure/tables placements
 \RequirePackage{caption} % for caption formatting
 \RequirePackage{hyphenat}
-\RequirePackage{hyperref}
+\RequirePackage{hyperref} 
 \RequirePackage{amssymb, amsmath, newtxmath}
-\RequirePackage{etoolbox}  % for dynamic author list
+\RequirePackage{pgffor} % for foreach
+\RequirePackage{xstring} % for IfEq
 \RequirePackage{datetime}
 \RequirePackage{enumitem} % for list items 
 \RequirePackage{longtable} % for very large and long tables
@@ -114,19 +115,28 @@
 
 \newcommand{\projecttitle}[1]{\def\titlename{#1}}
 
-\newcommand{\addauthor}[2]{ % Usage: \addauthor{Name}{ID}
-    \appto{\authorlist}{
-        \begin{tabular*}{0.6\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-            #1 & #2 \\
-        \end{tabular*}
-    }
+
+% Initialize empty lists for names and roll numbers
+\newcommand{\authornames}{LaTeX}
+\newcommand{\authorrollnumbers}{LaTeX}
+
+\newcommand{\addauthor}[2]{%
+    \IfEq {\authornames}{LaTeX} {\edef\authornames{#1}}{\edef\authornames{\authornames, #1}} 
+    \IfEq {\authorrollnumbers}{LaTeX} {\edef\authorrollnumbers{#2}}{\edef\authorrollnumbers{\authorrollnumbers, #2}} 
 }
 
-% Initialize the author list
-\newcommand{\authorlist}{}
+
 
 % Command to generate the cover page
-\newcommand{\coverpage}[2]{ % Usage: \coverpage{Project Title}{Author Info}
+\newcommand{\coverpage}[1]{ % Usage: \coverpage
+    \def\namerolltable{} % Clear previous contents
+    \foreach \name [count=\i] in \authornames {
+        \foreach \roll [count=\j] in \authorrollnumbers {
+            \ifnum\i=\j
+                \xdef\namerolltable{\namerolltable \name & \roll \\} 
+            \fi
+        }
+    }
     \begin{titlepage}
         \thispagestyle{empty} % No page numbering
         \centering % Center align everything
@@ -143,12 +153,15 @@
         % Project title
         \vspace*{\fill} % Dynamic line break
         \textbf{\thetitlepreamble\\
-        {#1}} \\
+        {\titlename}} \\
         
         % Authors
         \vspace*{\fill} % Dynamic line break
         \textbf{Submitted By:} \\
-        \authorlist % Print the list of authors and IDs
+        \begin{tabular*}{0.6\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+            \namerolltable
+        \end{tabular*}
+          
         
         % Submitted to (fixed)
         \vspace*{\fill} % Dynamic line break
@@ -166,7 +179,7 @@
 
 
 % Generate the new cover page with additional text and dynamic page numbering
-\newcommand{\coverpageB}[2]{ % Usage: \coverpageB{Project Title}{Author Info}
+\newcommand{\coverpageB}[1]{ % Usage: \coverpageB
     \begin{titlepage}
 
         \centering % Center align everything
@@ -183,12 +196,14 @@
         % Project title
         \vspace*{\fill} % Dynamic line break
         \textbf{\thetitlepreamble\\
-        {#1}} \\
+        {\titlename}} \\
         
         % Authors
         \vspace*{\fill} % Dynamic line break
         \textbf{Submitted By:} \\
-        \authorlist % Print the list of authors and IDs
+        \begin{tabular*}{0.6\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+            \namerolltable
+        \end{tabular*}
         
         % Submitted to (fixed)
         \vspace*{\fill} % Dynamic line break

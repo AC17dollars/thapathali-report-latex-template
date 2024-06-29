@@ -1,13 +1,16 @@
 \documentclass{ioereport}
-\usepackage{lipsum}
+\usepackage{lipsum} % Comment this if lorem ipsum is not needed
 
-% The outlines won't affect the printed documents so you can leave it as it.
-% \hypersetup{hidelinks}  % To hide red-outlines in hyperreferences
+% The outlines in hyperrefs won't affect the printed documents so you can leave it as is
+% \hypersetup{hidelinks}  % Uncomment to hide red-outlines in hyperreferences
 
 \begin{document}
 \input{acronyms}
 
+% add the title preamble
 \titlepreamble{A \LaTeX\ Template \\For}
+
+% add the project title
 \projecttitle{Thapathali Electronics Project Report Format} 
 
 % add author names
@@ -19,30 +22,36 @@
 % add supervisor name
 \supervisor{Mr. \textless Supervisor Name\textgreater}
 
-% start of document + cover page
-\coverpage{\titlename}{\authorlist}
+% coverpage
+\coverpage
 
+% start of phantom section
 \phantomsec
+
 % for second coverpage
-\coverpageB{\titlename}{\authorlist}
+\coverpageB
 \pagebreak
 
-% Only change the names, keep this section as it is
+% Keep this section as it is
 \section*{DECLARATION}
     \addcontentsline{toc}{section}{DECLARATION}
     We hereby declare that the report of the project entitled \textbf{“\titlename”} which is being submitted to the \textbf{Department of Electronics and Computer Engineering, IOE, Thapathali Campus}, in the partial fulfillment of the requirements for the award of the Degree of Bachelor of Engineering in \textbf{Electronics, Communication and Information}, is a bonafide report of the work carried out by us. The materials contained in this report have not been submitted to any University or Institution for the award of any degree and we are the only author of this complete work and no sources other than the listed here have been used in this work.
     \\ \\ \\ \\
-    Abhinav Chalise (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\
-    Student Name  (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\ 
-    Nom d'étudiant (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\ 
-    Nombre del estudiante (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\ \\ 
+    \foreach \name [count=\i] in \authornames {
+        \foreach \roll [count=\j] in \authorrollnumbers {
+            \ifnum\i=\j
+                \name\ (Class Roll No:\roll) \hrulefill \\ \\ 
+            \fi 
+        }
+    }
+    \\
     \textbf{Date:} \today
     
     \pagebreak
 
-% Only change the names, keep this section as it is
+% Only change the name, Keep this section as it is
 \section*{CERTIFICATE OF APPROVAL}
-    The undersigned certify that they have read and recommended to the \textbf{Department of Electronics and Computer Engineering, IOE, Thapathali Campus}, a major project work titled \textbf{``\titlename"} submitted by \textbf{Abhinav Chalise, Student Name, Nom d'étudiant and Nombre del estudiante} in partial fulfillment for the award of Bachelor of Engineering in Electronics, Communication and Information. The Project was carried out under special supervision and within the time frame prescribed by the syllabus.
+    The undersigned certify that they have read and recommended to the \textbf{Department of Electronics and Computer Engineering, IOE, Thapathali Campus}, a major project work titled \textbf{``\titlename"} submitted by \textbf{\authornames} in partial fulfillment for the award of Bachelor of Engineering in Electronics, Communication and Information. The Project was carried out under special supervision and within the time frame prescribed by the syllabus.
     
     We found the students to be hardworking, skilled and ready to undertake any related work to their field of study and hence we recommend the award of partial fulfillment of Bachelor of Engineering in Electronics, Communication and Information. \\
     
@@ -80,18 +89,26 @@
 
 \section*{ACKNOWLEDGMENT}
     \addcontentsline{toc}{section}{ACKNOWLEDGMENT}
+
+    % Write Acknowledgements
     \lipsum[1]
 
     We would also like to thank our supervisor \supervisorname\ for his invaluable guidance throughout this project.
     
     \lipsum[2]
 
+    % Do not change this part
     Sincerely, \\ \\
+    \def\namerolltable{}
+    \foreach \name [count=\i] in \authornames {
+        \foreach \roll [count=\j] in \authorrollnumbers {
+            \ifnum\i=\j
+                \xdef\namerolltable{\namerolltable \name & (Class Roll No:\roll) \\ \\} 
+            \fi
+        }
+    }
     \begin{tabular}{@{}l@{\hspace{0.03\linewidth}}l@{}}
-        Abhinav Chalise & (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\
-        Student Name  & (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\ 
-        Nom d'étudiant & (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\ 
-        Nombre del estudiante & (Class Roll No: THA0XXBEI0XX) \hrulefill \\ \\ 
+        \namerolltable
     \end{tabular} 
 
     \pagebreak
@@ -99,33 +116,37 @@
     
 \section*{ABSTRACT}
     \addcontentsline{toc}{section}{ABSTRACT}
+
+    % Write Abstract
     \lipsum[1]
     
     % Keywords in italics
     \textit{Keywords: Aenean, Cras, Morbi, Turpis \dots in alphabetical order}
 
     \pagebreak
-
-    % Table of Contents
-    \tableofcontents
-    \pagebreak
-
-    % List of Figures
-    \listoffigures
-    \pagebreak
-
-    % List of Tables
-    \listoftables
-    \pagebreak
     
-    % List of Abbreviations 
-    \printglossary[type=\acronymtype,style=acronyms-only,title=List of Abbreviations{\vspace{0.5\baselineskip}}]
-    \pagebreak
+
+% Table of Contents
+\tableofcontents
+\pagebreak
+
+% List of Figures
+\listoffigures
+\pagebreak
+
+% List of Tables
+\listoftables
+\pagebreak
     
+% List of Abbreviations 
+\printglossary[type=\acronymtype,style=acronyms-only,title=List of Abbreviations{\vspace{0.5\baselineskip}}]
+\pagebreak
 % end of phantom section
 
-%start of main section
+
+% Start of main section
 \mainsection
+
 \section{\MakeUppercase{Introduction}}
     We use \textbackslash gls\{tu\} as defined in \textit{acronym.tex} to insert acronyms like \gls{tu}. This will auto-insert used acronyms in List of Abbreviations. The first instance of the abbreviation will show its full form with short form inside braces but further instances like \gls{tu} will show short form only.
     \subsection{Background}
@@ -268,7 +289,7 @@
 
 % References (IEEE style)
 \bibliographystyle{IEEEtran}  % Use IEEE bibliography style
-\bibliography{refs}     % Specify your .bib file without the extension
+\bibliography{refs}
 \addcontentsline{toc}{section}{References}
 
 \end{document}
