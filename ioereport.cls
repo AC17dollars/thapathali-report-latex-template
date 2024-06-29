@@ -22,15 +22,30 @@
 \RequirePackage{enumitem} % for list items 
 \RequirePackage{longtable} % for very large and long tables
 
-
+% Command for Title Preamble
 \newcommand{\titlepreamble}[1]{%
     \def\thetitlepreamble{#1}%
 }
 
+% Command for Project Title
+\newcommand{\projecttitle}[1]{\def\titlename{#1}}
+
+% Command for Author Names
+\newcommand{\authornames}{LaTeX}
+\newcommand{\authorrollnumbers}{LaTeX}
+\newcommand{\addauthor}[2]{%
+    \IfEq {\authornames}{LaTeX} {\edef\authornames{#1}}{\edef\authornames{\authornames, #1}} 
+    \IfEq {\authorrollnumbers}{LaTeX} {\edef\authorrollnumbers{#2}}{\edef\authorrollnumbers{\authorrollnumbers, #2}} 
+}
+
+% Command to set supervisor name
+\newcommand{\supervisor}[1]{\def\supervisorname{#1}}
+
+\renewcommand{\today}{\monthname{} \the\year}
+
 \makeglossaries
 
 \onehalfspacing
-\renewcommand{\today}{\monthname{} \the\year}
 
 \numberwithin{equation}{section}
 \renewcommand{\theequation}{\thesection-\arabic{equation}}
@@ -38,6 +53,18 @@
 \renewcommand{\labelenumi}{\roman{enumi}.}
 \setlist[itemize]{topsep=0em, partopsep=0pt, parsep=0.1em, itemsep=0.75em}
 \setlist[enumerate]{topsep=0em, partopsep=0pt, parsep=0.1em, itemsep=0.75em}
+
+
+\newcommand{\phantomsec}{
+    \pagenumbering{roman} % Lower case Roman numerals
+    \setcounter{page}{1}  % Reset page number to 1
+}
+
+\newcommand{\mainsection}{
+    \newpage
+    \pagenumbering{arabic} % Arabic numerals
+    \setcounter{page}{1}   % Reset page number to 1
+}
 
 % Redefine \section command
 \renewcommand{\section}{\@startsection
@@ -67,6 +94,50 @@
     {\normalfont\fontsize{12}{14}\bfseries}} % formatting of the heading
 
 
+
+% Table of Contents, List of Figures and List of Tables configurations
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\cfttoctitlefont}{\fontsize{12pt}{12pt}\bfseries}
+\setlength{\cftbeforetoctitleskip}{0.25\baselineskip} % Adjust spacing before TOC title
+
+% Adjust the space between entries in the TOC
+\setlength{\cftbeforesecskip}{0.5em}     % Space before sections
+\setlength{\cftbeforesubsecskip}{0.25em} % Space before subsections
+\setlength{\cftbeforesubsubsecskip}{0.25em} % Space before subsubsections
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}  % Set dots between section title and page number
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}  % Set dots for subsections
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}  % Set dots for subsubsections
+
+\renewcommand{\cftloftitlefont}{\fontsize{12pt}{12pt}\bfseries}
+\setlength{\cftbeforeloftitleskip}{0.25em} % Adjust spacing before LOF title
+
+\renewcommand{\cftlottitlefont}{\fontsize{12pt}{12pt}\bfseries}
+\setlength{\cftbeforelottitleskip}{0.25em} % Adjust spacing before LOT title
+
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\renewcommand{\thetable}{\thesection-\arabic{table}}
+\@addtoreset{figure}{section}
+\@addtoreset{table}{section}
+\setlength{\cftfigindent}{0pt}
+\renewcommand{\cftfigpresnum}{Figure }
+\addtolength{\cftfignumwidth}{2.75em}
+\setlength{\cfttabindent}{0pt}
+\renewcommand{\cfttabpresnum}{Table }
+\addtolength{\cfttabnumwidth}{2.5em}
+
+% Setting dot separation for LoF and LoT
+\renewcommand{\cftfigdotsep}{0.5}
+\renewcommand{\cfttabdotsep}{0.5}
+\renewcommand{\cftdotsep}{0.5}
+
+
+
+\captionsetup[figure]{labelformat=simple, labelsep=colon, name=Figure}
+\captionsetup[table]{labelformat=simple, labelsep=colon, name=Table}
+
+
+% List of Abbreviations configurations
 \newglossarystyle{acronyms-only}{%
   \renewenvironment{theglossary}{\begin{longtable}[l]{@{}ll@{}}} {\end{longtable}}%
   \renewcommand*{\glossaryheader}{}%
@@ -77,53 +148,7 @@
 }
 
 
-\renewcommand{\contentsname}{Table of Contents}
-\renewcommand{\cfttoctitlefont}{\fontsize{12pt}{12pt}\bfseries}
-\setlength{\cftbeforetoctitleskip}{0.25\baselineskip} % Adjust spacing before TOC title
-
-% Adjust the space between entries in the TOC
-\setlength{\cftbeforesecskip}{0.5em}     % Space before sections
-\setlength{\cftbeforesubsecskip}{0.25em} % Space before subsections
-\setlength{\cftbeforesubsubsecskip}{0.25em} % Space before subsubsections
-
-
-\renewcommand{\cftloftitlefont}{\fontsize{12pt}{12pt}\bfseries}
-\setlength{\cftbeforeloftitleskip}{0.25\baselineskip} % Adjust spacing before LOF title
-
-\renewcommand{\cftlottitlefont}{\fontsize{12pt}{12pt}\bfseries}
-\setlength{\cftbeforelottitleskip}{0.25\baselineskip} % Adjust spacing before LOT title
-
-\renewcommand{\thefigure}{\thesection-\arabic{figure}}
-\renewcommand{\thetable}{\thesection-\arabic{table}}
-\@addtoreset{figure}{section}
-\@addtoreset{table}{section}
-\renewcommand{\l@figure}[2]{\@dottedtocline{1}{0pt}{2em}{\figurename\ #1}{#2}}
-\renewcommand{\l@table}[2]{\@dottedtocline{1}{0pt}{2em}{\tablename\ #1}{#2}}
-
-
-\captionsetup[figure]{labelformat=simple, labelsep=colon, name=Figure}
-\captionsetup[table]{labelformat=simple, labelsep=colon, name=Table}
-
-
 \renewcommand{\refname}{References}  % Change section name to "References" 
-
-
-
-
-% Command to set supervisor name
-\newcommand{\supervisor}[1]{\def\supervisorname{#1}}
-
-\newcommand{\projecttitle}[1]{\def\titlename{#1}}
-
-
-% Initialize empty lists for names and roll numbers
-\newcommand{\authornames}{LaTeX}
-\newcommand{\authorrollnumbers}{LaTeX}
-
-\newcommand{\addauthor}[2]{%
-    \IfEq {\authornames}{LaTeX} {\edef\authornames{#1}}{\edef\authornames{\authornames, #1}} 
-    \IfEq {\authorrollnumbers}{LaTeX} {\edef\authorrollnumbers{#2}}{\edef\authorrollnumbers{\authorrollnumbers, #2}} 
-}
 
 
 
@@ -176,8 +201,6 @@
     \end{titlepage}
 }
 
-
-
 % Generate the new cover page with additional text and dynamic page numbering
 \newcommand{\coverpageB}[1]{ % Usage: \coverpageB
     \begin{titlepage}
@@ -227,27 +250,6 @@
         \today
     \end{titlepage}
 }
-
-
-
-
-
-\newcommand{\phantomsec}{
-    \pagenumbering{roman} % Lower case Roman numerals
-    \setcounter{page}{1}  % Reset page number to 1
-}
-
-\newcommand{\mainsection}{
-    \newpage
-    \pagenumbering{arabic} % Arabic numerals
-    \setcounter{page}{1}   % Reset page number to 1
-}
-
-% Configure tocloft package for compact dots in table of contents
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}  % Set dots between section title and page number
-\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}  % Set dots for subsections
-\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}  % Set dots for subsubsections
-
 
 
 \endinput
