@@ -67,6 +67,7 @@
 }
 
 \newcommand{\appendixnumbering}[1]{
+    \setcounter{equation}{0}
     \counterwithin{equation}{subsection}
     \renewcommand{\theequation}{#1-\arabic{equation}}
 }
