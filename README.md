@@ -21,11 +21,15 @@ A preview of the generated **pdf** is available [here](main.pdf).
 
     1. Install LaTeX Distribution: Ensure you have a LaTeX distribution installed (e.g., TeX Live, MiKTeX).
     2. Open the Template: Open the main.tex file in your LaTeX editor (e.g., TeXstudio).
-    3. Compile the Document: Select PDFLaTeX as the compiler and compile the document to generate the PDF report.
+    3. Compile the Document: Select appropriate compiler and compile the document to generate the PDF report.
 
     Or you can directly compile through command line.
     ```
-    pdflatex main.tex
+    latexmk -pdf -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build main.tex
+
+    makeglossaries -d build main
+    
+    latexmk -pdf -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build main.tex
     ```
 
 2. **Using Overleaf**
