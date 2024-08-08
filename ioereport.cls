@@ -66,6 +66,11 @@
     \setcounter{page}{1}   % Reset page number to 1
 }
 
+\newcommand{\appendixnumbering}[1]{
+    \counterwithin{equation}{subsection}
+    \renewcommand{\theequation}{#1-\arabic{equation}}
+}
+
 % Redefine \section command
 \renewcommand{\section}{\@startsection
     {section}           % the name of the sectioning command to be redefined
