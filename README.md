@@ -10,7 +10,7 @@ This LaTeX template is crafted to assist students of Thapathali Campus, Institut
   - Customizable to meet specific requirements
 
 ## Preview
-A preview of the generated **pdf** is available [here](main.pdf).
+A preview of the generated **pdf** is available [here](build/main.pdf).
 
 *Note: The generated pdf contains outlined hyperrefs, this won't affect when printing the document so you can leave it as is. If this bothers you, you can add `\hypersetup{hidelinks}` in main.tex*
 
@@ -41,8 +41,51 @@ A preview of the generated **pdf** is available [here](main.pdf).
 3. **Using VSCode**
 
     1. Install LaTeX Workshop Extension: In VSCode, go to Extensions and install the "LaTeX Workshop" extension.
-    2. Open the Template: Open the main.tex file in VSCode.
-    3. Compile the Document: Use the "LaTeX Workshop" extension to compile the document by clicking on the "TeX" icon in the toolbar and selecting "Build LaTeX project".
+    2. Open VSCode settings.json and add the following configuration.
+
+        `Ctrl+Shift+P and Search "Preferences: Open User Settings (JSON)"`
+        ```json
+        {
+        "latex-workshop.latex.outDir": "%DIR%/build",
+        "latex-workshop.latex.recipes": [
+            {
+                "name": "latexmk (custom)",
+                "tools": [
+                    "latexmk",
+                    "makeglossaries",
+                    "latexmk"
+                ]
+            },
+        ],
+        "latex-workshop.latex.tools": [
+            {
+                "name": "latexmk",
+                "command": "latexmk",
+                "args": [
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-pdf",
+                    "-outdir=%OUTDIR%",
+                    "%DOC%"
+                ],
+                "env": {}
+            },
+            {
+                "name": "makeglossaries",
+                "command": "makeglossaries",
+                "args": [
+                    "-d",
+                    "%OUTDIR%",
+                    "%DOCFILE%"
+                ]
+            },
+        ],
+        }
+        ```
+
+    3. Open the Template: Open the main.tex file in VSCode with template directory as workspace.
+    4. Compile the Document: Use the "LaTeX Workshop" extension to compile the document by clicking on the "TeX" icon in the toolbar and selecting "Build LaTeX project".
 
 ## Contribution
 
