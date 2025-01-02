@@ -267,11 +267,14 @@
 
     \pagebreak
     
+\AppendixStyle{5.5em} % 5.5em is for Table of Contents spacing
 \section{\MakeUppercase{Appendices}} \label{sec:appendices}
     \textit{It may contains the additional topics or data sheets or reference sheets or even user manual. Project Budget (Detailed Breakdown of Costs), Project Timeline (Gantt chart), Circuit Diagrams (Should be Clear and Legible), PCB Designs (Should be Clear and Legible), Module Specifications (Should be brief - Keep only necessary tables and figures), Details of Dataset can be included here. The appendix name should be given as follows.}
     
-    \subsection*{Appendix A: Project Schedule}
-    \addcontentsline{toc}{subsection}{Appendix A: Project Schedule}
+    \setcounter{subsection}{0}
+    \subsection{Project Schedule}
+    \appendixnumbering{\Alph{subsection}}
+    
     \begin{figure}[H]
         \centering
         \includegraphics[angle=90, origin=c, height=0.4\textheight]{TU_Logo.jpg}
@@ -281,10 +284,8 @@
     
     \pagebreak
     
-    \subsection*{Appendix B: Circuit Diagram}
-    \addcontentsline{toc}{subsection}{Appendix B: Circuit Diagram}
-    \appendixnumbering{B} % For appendix Math numbering like B-1, B-2, etc.
-
+    \subsection{Circuit Diagram}
+    \appendixnumbering{\Alph{subsection}} % For appendix math, table and figure numbering like B-1, B-2, etc. 
     \begin{equation}
         F = ma 
     \end{equation}

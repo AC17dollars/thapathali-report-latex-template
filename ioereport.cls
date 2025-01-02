@@ -70,6 +70,8 @@
     \setcounter{equation}{0}
     \counterwithin{equation}{subsection}
     \renewcommand{\theequation}{#1-\arabic{equation}}
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
 }
 
 % Redefine \section command
@@ -105,6 +107,15 @@
 \renewcommand{\contentsname}{Table of Contents}
 \renewcommand{\cfttoctitlefont}{\fontsize{12pt}{12pt}\bfseries}
 \setlength{\cftbeforetoctitleskip}{0.25\baselineskip} % Adjust spacing before TOC title
+
+% Appendix Style for Table, Figure, Table of Contents and Subsection
+\newcommand{\AppendixStyle}[1]{
+  \renewcommand{\thesubsubsection}{\Alph{subsection}.\arabic{subsubsection}}
+  \renewcommand{\thesubsection}{Appendix \Alph{subsection}:}
+  \renewcommand{\thetable}{\Alph{subsection}-\arabic{table}}
+  \renewcommand{\thefigure}{\Alph{subsection}-\arabic{figure}}
+  \addtocontents{toc}{\protect\setlength{\cftsubsecnumwidth}{#1}}
+}
 
 % Adjust the space between entries in the TOC
 \setlength{\cftbeforesecskip}{0.5em}     % Space before sections
