@@ -138,7 +138,7 @@
 \@addtoreset{table}{section}
 \setlength{\cftfigindent}{0pt}
 \renewcommand{\cftfigpresnum}{Figure }
-\addtolength{\cftfignumwidth}{2.75em}
+\addtolength{\cftfignumwidth}{3.15em}
 \setlength{\cfttabindent}{0pt}
 \renewcommand{\cfttabpresnum}{Table }
 \addtolength{\cfttabnumwidth}{2.5em}
