@@ -4,6 +4,8 @@
 % The outlines in hyperrefs won't affect the printed documents so you can leave it as is
 % \hypersetup{hidelinks}  % Uncomment to hide red-outlines in hyperreferences
 
+% \includeonly{sections/}
+
 \begin{document}
 \input{acronyms}
 
@@ -11,7 +13,7 @@
 \titlepreamble{A \LaTeX\ Template \\For}
 
 % add the project title
-\projecttitle{Thapathali Electronics Project Report Format} 
+\projecttitle{IOE Thapathali Electronics Project Report Format} 
 
 % add author names
 \addauthor{Abhinav Chalise}{THA0XXBEI0XX}
@@ -24,120 +26,26 @@
 
 % coverpage
 \coverpage
-
 % start of phantom section
 \phantomsec
-
 % for second coverpage
 \coverpageB
 \pagebreak
-
-% Keep this section as it is
-\section*{DECLARATION}
-    \addcontentsline{toc}{section}{DECLARATION}
-    We hereby declare that the report of the project entitled \textbf{“\titlename”} which is being submitted to the \textbf{Department of Electronics and Computer Engineering, IOE, Thapathali Campus}, in the partial fulfillment of the requirements for the award of the Degree of Bachelor of Engineering in \textbf{Electronics, Communication and Information}, is a bonafide report of the work carried out by us. The materials contained in this report have not been submitted to any University or Institution for the award of any degree and we are the only author of this complete work and no sources other than the listed here have been used in this work.
-    \\ \\ \\ \\
-    \foreach \name [count=\i] in \authornames {
-        \foreach \roll [count=\j] in \authorrollnumbers {
-            \ifnum\i=\j
-                \name\ (Class Roll No:\roll) \hrulefill \\ \\ 
-            \fi 
-        }
-    }
-    \\
-    \textbf{Date:} \today
-    
-    \pagebreak
-
-% Only change the name, Keep this section as it is
-\section*{CERTIFICATE OF APPROVAL}
-    The undersigned certify that they have read and recommended to the \textbf{Department of Electronics and Computer Engineering, IOE, Thapathali Campus}, a major project work titled \textbf{``\titlename"} submitted by \textbf{\authornames} in partial fulfillment for the award of Bachelor of Engineering in Electronics, Communication and Information. The Project was carried out under special supervision and within the time frame prescribed by the syllabus.
-    
-    We found the students to be hardworking, skilled and ready to undertake any related work to their field of study and hence we recommend the award of partial fulfillment of Bachelor of Engineering in Electronics, Communication and Information. \\
-    
-    \rule{0.5\linewidth}{0.4pt}\\
-    Project Supervisor\\
-    \supervisorname\\
-    Department of Electronics and Computer Engineering, Thapathali Campus\\
-
-    \rule{0.5\linewidth}{0.4pt} \\
-    External Examiner \\
-    Prof. Dr. \textless Name of External\textgreater\\
-    Department of Electronics and Computer Engineering, Pulchowk Campus\\
-
-    \rule{0.5\linewidth}{0.4pt} \\
-    Project Co-ordinator\\
-    Er. \textless Name of Co-ordinator\textgreater \\
-    Department of Electronics and Computer Engineering, Thapathali Campus\\
-
-    \rule{0.5\linewidth}{0.4pt} \\
-    Head of the Department \\ 
-    Er. \textless Name of HOD\textgreater \\ 
-    Department of Electronics and Computer Engineering, Thapathali Campus\\
-
-    \today
-
-    \pagebreak
-
-% Keep this section as it is
-\section*{COPYRIGHT}
-    The author has agreed that the Library, along with the Department of Electronics and Computer Engineering, Thapathali Campus, may make this report available for public inspection. Furthermore, the author has consented to the possibility of extensive copying of this project work for scholarly purposes, which may be granted by the supervising professor/lecturer or, in their absence, by the head of the department. It is understood that recognition will be given to the author and to the Department of Electronics and Computer Engineering, IOE, Thapathali Campus, for any use of the material from this report. Unauthorized copying for publication or other forms of financial gain without the express approval of both the Department of Electronics and Computer Engineering, IOE, Thapathali Campus, and the author is strictly prohibited.
-
-    Requests for permission to copy or make any use of the material from this project, in whole or in part, should be addressed to the Department of Electronics and Computer Engineering, IOE, Thapathali Campus.
-
-    \pagebreak
-
-\section*{ACKNOWLEDGMENT}
-    \addcontentsline{toc}{section}{ACKNOWLEDGMENT}
-
-    % Write Acknowledgements
-    \lipsum[1]
-
-    We would also like to thank our supervisor \supervisorname\ for his invaluable guidance throughout this project.
-    
-    \lipsum[2]
-
-    % Do not change this part
-    Sincerely, \\ \\
-    \def\namerolltable{}
-    \foreach \name [count=\i] in \authornames {
-        \foreach \roll [count=\j] in \authorrollnumbers {
-            \ifnum\i=\j
-                \xdef\namerolltable{\namerolltable \name & (Class Roll No:\roll) \\ \\} 
-            \fi
-        }
-    }
-    \begin{tabular}{@{}l@{\hspace{0.03\linewidth}}l@{}}
-        \namerolltable
-    \end{tabular} 
-
-    \pagebreak
-
-    
-\section*{ABSTRACT}
-    \addcontentsline{toc}{section}{ABSTRACT}
-
-    % Write Abstract
-    \lipsum[1]
-    
-    % Keywords in italics
-    \textit{Keywords: Aenean, Cras, Morbi, Turpis \dots in alphabetical order}
-
-    \pagebreak
-    
+\include{sections/declaration}
+\include{sections/certificate}
+\include{sections/copyright}
+\include{sections/acknowledgement}
+\include{sections/abstract}
 
 % Table of Contents
 \tableofcontents
 \pagebreak
-
 % List of Figures
 \listoffigures
 \pagebreak
-
 % List of Tables
 \listoftables
 \pagebreak
-    
 % List of Abbreviations 
 \doublespacing
 \printglossary[type=\acronymtype,style=acronyms-only,title=List of Abbreviations{\vspace{0.5\baselineskip}}]
@@ -149,150 +57,13 @@
 % Start of main section
 \mainsection
 
-\section{\MakeUppercase{Introduction}}
-    We use \textbackslash gls\{tu\} as defined in \textit{acronym.tex} to insert acronyms like \gls{tu} and \gls{ioe}. This will auto-insert used acronyms in List of Abbreviations. The first instance of the abbreviation will show its full form with short form inside braces but further instances like \gls{tu} will show short form only.
-    \subsection{Background}
-    We use \textbackslash cite\{einstein1905\} as defined in \textit{refs.bib} to cite works \cite{einstein1905}. This will automatically insert used bibliography at the references section. You'll need to insert BibTeX in \textit{refs.bib} for this to work.
-    \subsection{Motivation}
-    Use \textbackslash autoref\{label-name\} to reference figures, tables, sections, equations and so on like \autoref{fig:logotu}, \autoref{tab:sample}, \autoref{sec:appendices} and \autoref{eqn:integral}.
-    \subsection{Problem Definition}
-    Your Problem Definition here.
-    \subsection{Objectives}
-    The main objectives of our project are listed below \textit{(maximum 2 points and to the point)}:
-    \begin{itemize}
-        \item Objective 1
-        \item Objective 2
-    \end{itemize}
-    
-    \subsection{Project Scope and Applications}
-    Your Project Scope and applications here.
-    \subsection{Report Organization}
-    \textit{Briefly explains all the chapters and their focus.}
-
-    \pagebreak
-    
-\section{\MakeUppercase{Literature Review}}
-    \textit{This chapter contains all the existing works that have already been carried out in the field related to your project topic. This chapters tells how much you researched before completing your project. You have to explain each of the works as a separate sub-topic with following details:
-        \begin{enumerate}
-            \item What is the work of existing/researched related topic?
-            \item How it is done? used methods, techniques, technology, algorithms and any new innovations of existing/researched related topic)
-            \item Its importance or applications existing/researched related topic
-            \item Drawbacks and limitations existing/researched related topic
-            \item Criticize the work of existing/researched related topic
-            \item Link these criticisms on the existing/researched related topic to the motivation explained in previous chapter.
-            \item Each information should be properly cited.
-        \end{enumerate}
-    }
-    \lipsum[9] \cite{einstein1905}
-
-    \pagebreak
-
-\section{\MakeUppercase{Requirement Analysis}}
-    \textit{Describe the why and where in your project these requirements are needed.}
-    \subsection{Dataset Analysis}
-    Description
-    \subsection{Hardware/Software Requirements}
-    Description
-        \subsubsection{SubSubsection 1}
-        Description
-        \subsubsection{Subsubsection 2}
-        Description
-
-    \pagebreak
-    
-\section{\MakeUppercase{System Architecture and Methodology}}
-    Explain system block diagram, flowcharts and other methodologies for your project.
-    
-    Inserting figure \textit{Keep it centered}:\\
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.1]{TU_Logo.jpg}
-        \caption{Block Diagram of ABC}
-        \label{fig:logotu}
-    \end{figure}
-
-    \subsection{Block Diagram}
-    \textit{(Explain all the building blocks of your system in details explaining what and how it does the things)}.
-
-    \subsection{Flowcharts}
-    Descriptions
-
-    \pagebreak
-
-\section{\MakeUppercase{Implementation Details}}
-    \textit{Describe how the hardware components / instruments \& software function in your project. Describe the calibration process required for correct operation of each module. Describe the interfacing technicalities / protocol of each module used in your project. Explain in detail how all components are interconnected to make a functioning system.}
-
-    Inserting table:\\
-    \begin{table}[H]
-        \caption{Sample Table}
-        \label{tab:sample}
-        \centering
-        \begin{tabular}{|c|c|c|}
-            \hline
-            \textbf{Name} & \textbf{Age} & \textbf{Occupation} \\
-            \hline
-            John Doe & 30 & Engineer \\
-            Jane Smith & 25 & Teacher \\
-            Mike Johnson & 35 & Doctor \\
-            \hline
-        \end{tabular}
-    \end{table}
-    
-    Inserting equations:\\
-    $$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
-    \[ 
-        \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
-    \]
-    
-    Inserting numbered equations:\\
-    \begin{equation} \label{eqn:integral}
-        \oint_C z\,dz
-    \end{equation}
-
-    \pagebreak 
-
-\section{\MakeUppercase{Result and Analysis}}
-    \textit{(It contains the results/outputs of your project. The output can be numeric or graphical based. Present the outputs of your project in the form of tables / graphs / charts / figures and explain their behavior. You can also represent or write down the results in tabular form if applicable and analyze that by using graphs or charts. Perform error analysis, comparisons (theory, simulation, practical) and validate your output. Discuss the sources of errors in your project that caused your outputs to deviate from expected values.)
-    }
-
-    \subsection{Subsection 1}
-        Description here
-        \subsubsection{Subsubsection 1}
-            Description here
-    \subsection{Subsection 2}
-        Description here
-
-    \pagebreak
-
-\section{\MakeUppercase{Conclusion}}
-    \lipsum[2]
-
-    \pagebreak
-    
-\AppendixStyle{5.5em} % 5.5em is for Table of Contents spacing
-\section{\MakeUppercase{Appendices}} \label{sec:appendices}
-    \textit{It may contains the additional topics or data sheets or reference sheets or even user manual. Project Budget (Detailed Breakdown of Costs), Project Timeline (Gantt chart), Circuit Diagrams (Should be Clear and Legible), PCB Designs (Should be Clear and Legible), Module Specifications (Should be brief - Keep only necessary tables and figures), Details of Dataset can be included here. The appendix name should be given as follows.}
-    
-    \setcounter{subsection}{0}
-    \subsection{Project Schedule}
-    \appendixnumbering{\Alph{subsection}}
-    
-    \begin{figure}[H]
-        \centering
-        \includegraphics[angle=90, origin=c, height=0.4\textheight]{TU_Logo.jpg}
-        \caption{Gantt Chart}
-        \label{fig:gantt}
-    \end{figure}
-    
-    \pagebreak
-    
-    \subsection{Circuit Diagram}
-    \appendixnumbering{\Alph{subsection}} % For appendix math, table and figure numbering like B-1, B-2, etc. 
-    \begin{equation}
-        F = ma 
-    \end{equation}
-
-\pagebreak
+\include{sections/introduction}
+\include{sections/literature}
+\include{sections/requirements}
+\include{sections/methodology}
+\include{sections/implementation}
+\include{sections/results}
+\include{sections/appendix}
 
 
 % References (IEEE style)

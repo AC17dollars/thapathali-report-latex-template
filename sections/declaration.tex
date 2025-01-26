@@ -1,0 +1,17 @@
+% Keep this section as it is
+\section*{DECLARATION}
+    \addcontentsline{toc}{section}{DECLARATION}
+    We hereby declare that the report of the project entitled \textbf{``\titlename"} which is being submitted to the \textbf{Department of Electronics and Computer Engineering, IOE, Thapathali Campus}, in the partial fulfillment of the requirements for the award of the Degree of Bachelor of Engineering in \textbf{Electronics, Communication and Information}, is a bonafide report of the work carried out by us. The materials contained in this report have not been submitted to any university or institution for the award of any degree and we are the only author of this complete work and no sources other than the listed here have been used in this work.
+    \vspace*{3\baselineskip}
+
+    \foreach \name [count=\i] in \authornames {
+        \foreach \roll [count=\j] in \authorrollnumbers {
+            \ifnum\i=\j
+                \noindent \name\ (Class Roll No: \roll) \hrulefill \par
+                \vspace*{\baselineskip}%
+            \fi 
+        }
+    }
+    \vspace*{\baselineskip} % Remove extra space after last entry
+
+    \textbf{Date:} \today

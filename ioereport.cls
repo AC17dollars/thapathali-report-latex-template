@@ -184,7 +184,7 @@
         \centering % Center align everything
         
         % Logo
-        \includegraphics[width=0.25\textwidth]{TU_Logo.jpg} % Change "logo.png" to your logo file
+        \includegraphics[width=0.25\textwidth]{TU_Logo.jpg}
         
         % Title and institute
         \vspace*{\fill} % Dynamic line break
@@ -200,7 +200,7 @@
         % Authors
         \vspace*{\fill} % Dynamic line break
         \textbf{Submitted By:} \\
-        \begin{tabular*}{0.6\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \begin{tabular*}{0.6\textwidth}{@{}l@{\extracolsep{\fill}}r@{}} % Adjust 0.6\textwidth to your liking if you have long / short names
             \namerolltable
         \end{tabular*}
           
@@ -225,7 +225,7 @@
         \centering % Center align everything
         
         % Logo
-        \includegraphics[width=0.25\textwidth]{TU_Logo.jpg} % Change "logo.png" to your logo file
+        \includegraphics[width=0.25\textwidth]{TU_Logo.jpg}
         
         % Title and institute
         \vspace*{\fill} % Dynamic line break
@@ -241,7 +241,7 @@
         % Authors
         \vspace*{\fill} % Dynamic line break
         \textbf{Submitted By:} \\
-        \begin{tabular*}{0.6\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \begin{tabular*}{0.6\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}  % Adjust 0.6\textwidth to your liking if you have long / short names
             \namerolltable
         \end{tabular*}
         

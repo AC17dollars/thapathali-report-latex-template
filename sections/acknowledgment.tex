@@ -1,0 +1,23 @@
+\section*{ACKNOWLEDGMENT}
+    \addcontentsline{toc}{section}{ACKNOWLEDGMENT}
+
+    % Write Acknowledgements
+    \lipsum[1]
+
+    We would also like to thank our supervisor \supervisorname\ for his invaluable guidance throughout this project.
+    
+    \lipsum[2]
+
+    % Do not change this part
+    Sincerely, \\ \\
+    \def\namerolltable{}
+    \foreach \name [count=\i] in \authornames {
+        \foreach \roll [count=\j] in \authorrollnumbers {
+            \ifnum\i=\j
+                \xdef\namerolltable{\namerolltable \name & (Class Roll No: \roll) \\ \\} 
+            \fi
+        }
+    }
+    \begin{tabular}{@{}l@{\hspace{0.03\linewidth}}l@{}}
+        \namerolltable
+    \end{tabular} 
